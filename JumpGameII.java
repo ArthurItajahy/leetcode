@@ -1,31 +1,41 @@
 public class JumpGameII {
-    public static int minJumps(int[] nums){
-        int n = nums.length;
-        if(n <= 1){
-            return 0;
-        }
+    public static int minJumps(int[] nums) {
 
-        int maxReach = nums[0]; // Maximum index reachable
-        int lastJump = nums[0]; // Index where the last occurred
-        int steps = 1; // Number of Jumps taken so far
+            int n = nums.length;
+            if (n <= 1) {
+                return 0; // No jumps needed if there's only one element or none
+            }
 
-        for(int i = 1; i<n - 1; i++){
-            maxReach = Math.max(maxReach, i+ nums[i]);
-            if(i == lastJump){
-                lastJump = maxReach;
-                steps++;
+            int jumps = 0; // Number of jumps taken so far
+            int maxReach = 0; // Farthest index reachable in a single jump
+            int currentMaxReach = 0; // Farthest index reachable with the current number of jumps
+
+            // Iterate through the array
+            for (int i = 0; i < n - 1; i++) {
+                maxReach = Math.max(maxReach, i + nums[i]); // Update maxReach
+
+                // If we've reached the end of the current reachable indices
+                if (i == currentMaxReach) {
+                    jumps++; // Increment the number of jumps
+                    currentMaxReach = maxReach; // Update currentMaxReach
+                }
             }
-            if(maxReach >= n - 1) {
-                return steps;
-            }
-        }
-        return -1; // If unable to reach the last index
+
+            return jumps;
+
     }
     public static void main(String[] args){
-        int[] nums1 = { 2, 3, 1, 1, 4};
-        System.out.println(minJumps(nums1)); // Output: 2
+
+        int[] nums1 = {3,2,1};
+        System.out.println(minJumps(nums1)); // Output: 1
 
         int[] nums2 = {2, 3, 0, 1, 4};
         System.out.println(minJumps(nums2)); // Output: 2
+        int[] nums3 = {2,3,1,1,4};
+        System.out.println(minJumps(nums3)); // Output: 2
+
+        int[] nums4 = {1,2,3};
+        System.out.println(minJumps(nums4)); // Output: 2
     }
+
 }
