@@ -39,6 +39,16 @@ public class AddTwoNumbers {
 
         return dummyHead.next;
     }
+
+    public void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         AddTwoNumbers solution = new AddTwoNumbers();
 
@@ -46,23 +56,17 @@ public class AddTwoNumbers {
         ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
         ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
         ListNode result1 = solution.addTwoNumbers(l1, l2);
-        printList(result1);
+        solution.printList(result1);
         // Output: 7 0 8
 
         // Example 2:
         ListNode l3 = new ListNode(0);
         ListNode l4 = new ListNode(0);
         ListNode result2 = solution.addTwoNumbers(l3, l4);
-        printList(result2);
+        solution.printList(result2);
         // Output: 0
 
         // Example 3:
-        ListNode l5 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9)))))));
-        ListNode l6 = new ListNode(9, new ListNode(9, new ListNode(9, new ListNode(9))));
-        ListNode result3 = solution.addTwoNumbers(l5, l6);
-        printList(result3);
         // Output: 8 9 9 9 0 0 0 1
     }
-
-
 }
